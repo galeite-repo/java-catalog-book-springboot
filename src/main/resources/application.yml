@@ -25,6 +25,6 @@ server:
   port: 3000
 
 
-logging:
-  level:
-    org.springframework.data.redis.cache: DEBUG
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

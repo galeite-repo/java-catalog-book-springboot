@@ -20,13 +20,16 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf((csrf) -> csrf.disable())
-                .authorizeHttpRequests((auth) -> auth
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").hasRole("ADMIN")
                         .requestMatchers("/api/books/genres").hasRole("ADMIN")
                         .requestMatchers("/api/books/**").authenticated()
                 )
                 .httpBasic(org.springframework.security.config.Customizer.withDefaults());
         return http.build();
     }
+
+
 
     @Bean
     public UserDetailsService users() {

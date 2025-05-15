@@ -3,6 +3,7 @@ package com.catalog.sabio.books.controller;
 import com.catalog.sabio.books.model.BookEntity;
 import com.catalog.sabio.books.response.ApiResponse;
 import com.catalog.sabio.books.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
-
 
     @GetMapping
     public ResponseEntity<ApiResponse<Page<BookEntity>>> getAllBooks(Pageable pageable) {
