@@ -38,7 +38,7 @@ Cache com Redis foi adicionado em consultas de gênero para reduzir latência em
 - `GET /api/books/{id}`: busca um livro por ID
 - `GET /api/books/genre?genre={genre}`: busca livros por gênero
 - `GET /api/books/author?author={author}`: busca livros por autor
-- `GET /api/books/genres`: retorna todos os gêneros distintos (**ADMIN**)
+- `GET /api/books/genres`: retorna todos os gêneros distintos (**admin only**)
 
 ---
 
@@ -68,7 +68,7 @@ Autenticação básica configurada com dois perfis:
 ## Melhorias Futuras
 
 - Testes mais robustos (integração e carga)
-- Paginação com ordenação e filtros dinâmicos
+- Paginação com  filtros dinâmicos
 - Autenticação com OAuth2 / JWT
 - Observabilidade com Prometheus + Grafana
 
