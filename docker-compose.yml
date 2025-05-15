@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: docker.io/postgres:latest
+    container_name: postgres
+    environment:
+
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: F9x#1Vq3mZ8!Tr2n
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - api-catalogo-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    networks:
+      - api-catalogo-network
+
+networks:
+  api-catalogo-network:
+    external: true
