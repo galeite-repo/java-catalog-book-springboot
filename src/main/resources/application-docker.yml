@@ -1,0 +1,14 @@
+spring:
+  data:
+    redis:
+      host: redis
+      port: 6379
+    cache:
+      type: redis
+
+  datasource:
+    url: jdbc:postgresql://postgres:5432/catalog-book
+    username: admin
+    password: F9x#1Vq3mZ8!Tr2n
+    driver-class-name: org.postgresql.Driver
+
