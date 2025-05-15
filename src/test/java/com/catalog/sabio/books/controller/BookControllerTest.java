@@ -1,7 +1,7 @@
 package com.catalog.sabio.books.controller;
 
 import com.catalog.sabio.books.model.BookEntity;
-import com.catalog.sabio.books.response.ApiResponse;
+import com.catalog.sabio.books.response.ApiResponseDto;
 import com.catalog.sabio.books.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class BookControllerTest {
 
         when(bookService.getBooks(pageable)).thenReturn(books);
 
-        ResponseEntity<ApiResponse<Page<BookEntity>>> response = bookController.getAllBooks(pageable);
+        ResponseEntity<ApiResponseDto<Page<BookEntity>>> response = bookController.getAllBooks(pageable);
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("FOUND", response.getBody().getCode());
@@ -60,7 +60,7 @@ class BookControllerTest {
         List<BookEntity> books = List.of(new BookEntity());
         when(bookService.getBooksByGenre(genre)).thenReturn(books);
 
-        ResponseEntity<ApiResponse<List<BookEntity>>> response = bookController.getBooksByCategory(genre);
+        ResponseEntity<ApiResponseDto<List<BookEntity>>> response = bookController.getBooksByCategory(genre);
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("FOUND", response.getBody().getCode());
@@ -73,7 +73,7 @@ class BookControllerTest {
         List<BookEntity> books = List.of(new BookEntity());
         when(bookService.getBooksByAuthor(author)).thenReturn(books);
 
-        ResponseEntity<ApiResponse<List<BookEntity>>> response = bookController.getBooksByAuthor(author);
+        ResponseEntity<ApiResponseDto<List<BookEntity>>> response = bookController.getBooksByAuthor(author);
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("FOUND", response.getBody().getCode());
@@ -85,7 +85,7 @@ class BookControllerTest {
         List<String> genres = List.of("Fiction", "Drama");
         when(bookService.getGenres()).thenReturn(genres);
 
-        ResponseEntity<ApiResponse<List<String>>> response = bookController.getCategories();
+        ResponseEntity<ApiResponseDto<List<String>>> response = bookController.getCategories();
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("FOUND", response.getBody().getCode());

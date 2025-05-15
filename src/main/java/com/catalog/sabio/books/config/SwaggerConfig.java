@@ -25,6 +25,6 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("Desafio - O Catalogo do Sábio")
                         .version("1.0")
-                        .description("API Documentation"));
+                        .description("Documentação API"));
     }
 }
