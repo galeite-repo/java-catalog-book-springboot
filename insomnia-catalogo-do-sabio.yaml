@@ -6,23 +6,27 @@ meta:
   modified: 1747248050926
 collection:
   - url: http://localhost:3000/api/books
-    name: GetAll
+    name: GetBooks
     meta:
       id: req_6e5ae19df27c424abb87dae929deb0e3
       created: 1747248064356
-      modified: 1747276461926
+      modified: 1747376965950
       isPrivate: false
       sortKey: -1747248064356
     method: GET
     parameters:
       - id: pair_720c21f27fe64bea9d68b8f9e72a631c
         name: page
-        value: "1"
+        value: "0"
         disabled: false
       - id: pair_5ccc7647c7564aec8b24db6ec68a5446
         name: size
-        value: "200"
+        value: "10"
         disabled: false
+      - id: pair_a05e546fffe841bda26525a1d1acfad1
+        name: sort
+        value: id,DESC
+        disabled: true
     headers:
       - name: User-Agent
         value: insomnia/11.0.2
@@ -45,13 +49,19 @@ collection:
     meta:
       id: req_f001ece8923a4a2fb4edb3fbe456dab2
       created: 1747248155093
-      modified: 1747267063390
+      modified: 1747332894261
       isPrivate: false
       sortKey: -1746999298088
     method: GET
     headers:
       - name: User-Agent
         value: insomnia/11.0.2
+    authentication:
+      type: basic
+      useISO88591: false
+      disabled: false
+      username: user
+      password: user
     settings:
       renderRequestBody: true
       encodeUrl: true
@@ -96,7 +106,7 @@ collection:
     meta:
       id: req_1d0e7899d4874ac1ace1ee0a84bdef95
       created: 1747248219355
-      modified: 1747329568137
+      modified: 1747342647801
       isPrivate: false
       sortKey: -1747123681222
     method: GET
@@ -122,14 +132,14 @@ collection:
     meta:
       id: req_befe9484e16e4df3b4a1fb0ddb9cd565
       created: 1747248236553
-      modified: 1747329591342
+      modified: 1747376970124
       isPrivate: false
       sortKey: -1747185872789
     method: GET
     parameters:
       - id: pair_f87e77f476b94068a99fd70b2fa9c684
         name: genre
-        value: Speech
+        value: Fanfiction
         disabled: false
     headers:
       - name: User-Agent
@@ -148,22 +158,51 @@ collection:
         send: true
         store: true
       rebuildPath: true
+  - url: http://localhost:3000/api/books/all
+    name: GetAllBooks
+    meta:
+      id: req_079cce118a954df583ebb7d4be307932
+      created: 1747368561704
+      modified: 1747376945677
+      isPrivate: false
+      sortKey: -1747216968572.5
+    method: GET
+    parameters:
+      - id: pair_18bdd2ca5cd2455f94c352794b5e9d94
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    authentication:
+      type: basic
+      useISO88591: false
+      disabled: false
+      username: admin
+      password: admin
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
     id: jar_009e98cb62cd9be19c5cc08a96af8ee27b8b2277
     created: 1747248050974
-    modified: 1747329579514
+    modified: 1747332886295
   cookies:
     - key: JSESSIONID
-      value: 81827CC6931C1457A0671BDC97A52D4D
+      value: 9FCF77BFE4D550B861464F79FC9787CF
       domain: localhost
       path: /
       httpOnly: true
       hostOnly: true
       creation: 2025-05-15T00:26:54.433Z
-      lastAccessed: 2025-05-15T17:19:39.513Z
-      id: a51ebea2-8c90-4ad6-a9ff-6f17e611974f
+      lastAccessed: 2025-05-15T18:14:46.295Z
+      id: 4894857a-d325-4c51-98e1-20c6ac93cb3d
 environments:
   name: Base Environment
   meta:

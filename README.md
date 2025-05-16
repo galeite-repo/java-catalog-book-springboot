@@ -118,3 +118,7 @@ docker-compose up -d --build
 ## Frontend
 - **URL**: http://localhost:8080
 
+
+## Insomnia
+- **Import:** ./insomnia-catalogo-do-sabio.yaml
+
