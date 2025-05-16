@@ -39,7 +39,7 @@ public class BookController {
     }
 
 
-    @Operation(summary = "Listar todos os livros", description = "Retorna uma lista de todos os livros disponíveis no catálogo Cacheado pelo Redis.",
+    @Operation(summary = "Listar todos os livros", description = "Retorna uma lista de todos os livros disponíveis no catálogo utilizando pelo Redis para cachê.",
             responses = {@ApiResponse(responseCode = "200", description = "Livros encontrados com sucesso",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = BookListResponse.class))),

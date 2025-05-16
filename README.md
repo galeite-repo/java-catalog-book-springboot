@@ -14,7 +14,7 @@ A aplicação segue o padrão em camadas:
 - `Service` → Contém a lógica de negócio
 - `Repository` → Comunicação com o banco
 
-Cache com Redis foi adicionado em consultas de gênero para reduzir latência em chamadas repetidas.
+Cache com Redis foi adicionado em consulta de todos os livros para reduzir latência em chamadas repetidas.
 
 ### Tecnologias
 
@@ -44,6 +44,7 @@ Cache com Redis foi adicionado em consultas de gênero para reduzir latência em
 ## Funcionalidades
 
 - `GET /api/books`: lista todos os livros (com paginação)
+- `GET /api/books/all`: lista todos os livros (Redis)
 - `GET /api/books/{id}`: busca um livro por ID
 - `GET /api/books/genre?genre={genre}`: busca livros por gênero
 - `GET /api/books/author?author={author}`: busca livros por autor
