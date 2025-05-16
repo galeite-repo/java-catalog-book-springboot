@@ -1,6 +1,6 @@
-# Catálogo do Sábio - API de Livros
+# Catálogo do Sábio - API de Livros (Desafio)
 
-API REST feita em Java com Spring Boot para gerenciar um catálogo de livros. Possui endpoints para listagem, busca por ID, autor ou gênero, e exibição dos gêneros distintos. Projeto com foco em performance, estrutura limpa e boas práticas de desenvolvimento.
+API REST feita em Java com Spring Boot para gerenciar um catálogo de livros. Possui endpoints para listagem com paginação, listagem usando cachê com Redis, busca por ID, autor ou gênero, e exibição dos gêneros distintos. Projeto com foco em performance, estrutura limpa e boas práticas de desenvolvimento.
 
 ---
 
@@ -18,6 +18,7 @@ Cache com Redis foi adicionado em consultas de gênero para reduzir latência em
 
 ### Tecnologias
 
+## Backend
 - **Java 17**: linguagem principal
 - **Spring Boot**: estrutura base do projeto
   - Spring Data JPA
@@ -29,6 +30,14 @@ Cache com Redis foi adicionado em consultas de gênero para reduzir latência em
 - **Docker / Docker Compose**
 - **Java Faker**: geração de dados fake
 - **JUnit 5 + Mockito**: testes unitários e integração
+
+## Frontend
+- **Angular 19**: framework principal
+  - Angular CLI
+  - Angular Router
+  - Angular Forms
+- **TypeScript**: linguagem principal
+- **Tailwind CSS + Flowbite**: estilização
 
 ---
 
@@ -68,9 +77,11 @@ Autenticação básica configurada com dois perfis:
 ## Melhorias Futuras
 
 - Testes mais robustos (integração e carga)
-- Paginação com  filtros dinâmicos
-- Autenticação com OAuth2 / JWT
+- Paginação com filtros dinâmicos
+- Integração com Agent IA
+- Autenticação com OAuth2 ou JWT
 - Observabilidade com Prometheus + Grafana
+- Página de Registro e Login
 
 ---
 
@@ -78,7 +89,7 @@ Autenticação básica configurada com dois perfis:
 
 - Configuração do Redis com Spring Cache
 - Geração de dados fake realistas
-- Segurança e controle de acesso por perfil
+- Frontend com Flowbite + Tailwind
 
 ---
 
@@ -88,11 +99,12 @@ Autenticação básica configurada com dois perfis:
 
 - Docker e Docker Compose
 - Java 17 + Maven (caso rode localmente sem container)
+- NodeJS + Angular (caso rode localmente sem container)
 
 ### Passos para rodar com Docker
 
 ```bash
-docker-compose up --build
+docker-compose up -d --build
 
 ```
 
@@ -102,4 +114,6 @@ docker-compose up --build
 - **Swagger**: http://localhost:3000/swagger-ui.html
     
 
+## Frontend
+- **URL**: http://localhost:8080
 

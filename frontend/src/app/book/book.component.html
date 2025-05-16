@@ -1,0 +1,130 @@
+
+<header class="bg-white dark:bg-gray-800 shadow-md py-4">
+  <div class="container mx-auto px-4">
+      <h1 class="text-xl font-semibold text-gray-900 dark:text-white">Catálogo do Sábio - (Desafio)</h1>
+  </div>
+</header>
+
+<div class="container px-4 py-8 mx-auto">
+  <div class="mb-6 bg-white rounded-lg shadow-md p-5 dark:bg-gray-800">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div>
+              <label for="genre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Filtrar por Gênero</label>
+              <select id="genre" [(ngModel)]="selectedGenre" (change)="filterByGenre()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option value="">Todos</option>
+                  <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+              </select>
+          </div>
+
+          <div>
+              <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buscar por Autor</label>
+              <div class="relative">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                      </svg>
+                  </div>
+                  <input type="text" id="author" [(ngModel)]="searchAuthor" class="block w-full p-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome do autor...">
+              </div>
+          </div>
+
+          <div class="flex items-end space-x-2">
+              <button type="button" (click)="searchByAuthor()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Buscar
+              </button>
+              <button type="button" (click)="clearFilters()" class="text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:ring-4 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-4 py-2.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+                  Limpar
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div *ngFor="let book of books" class="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
+          <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+              <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+          </div>
+          <div class="p-5">
+              <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ book.title }}</h5>
+              <p class="mb-1 text-sm text-gray-700 dark:text-gray-400">Autor: {{ book.author }}</p>
+              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ book.genre }}</span>
+              <p class="mt-3 text-sm text-gray-700 dark:text-gray-400">{{ book.description | slice:0:100 }}{{ book.description.length > 100 ? '...' : '' }}</p>
+              <div class="flex justify-end mt-4">
+                  <button type="button" (click)="openBookDetails(book)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Detalhes
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <div *ngIf="books.length === 0" class="col-span-full p-10 text-center bg-gray-100 rounded-lg dark:bg-gray-700">
+          <svg class="mx-auto mb-4 w-12 h-12 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Nenhum livro encontrado</h5>
+          <p class="text-gray-500 dark:text-gray-400">Tente ajustar seus filtros ou buscar por outro autor.</p>
+      </div>
+  </div>
+
+  <div *ngIf="totalPages > 1" class="flex justify-center mt-8">
+      <nav aria-label="Page navigation">
+          <ul class="inline-flex items-center -space-x-px">
+              <li>
+                  <button [disabled]="currentPage === 0" (click)="prevPage()" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{'cursor-not-allowed opacity-50': currentPage === 0}">Anterior</button>
+              </li>
+              <li>
+                  <span class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+              </li>
+              <li>
+                  <button [disabled]="currentPage === totalPages - 1" (click)="nextPage()" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{'cursor-not-allowed opacity-50': currentPage === totalPages - 1}">Próxima</button>
+              </li>
+          </ul>
+      </nav>
+  </div>
+</div>
+
+<div *ngIf="showModal" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full overflow-x-hidden overflow-y-auto bg-gray-900 bg-opacity-50">
+  <div class="relative w-full max-w-2xl max-h-full p-4">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+          <div class="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                  {{ selectedBook?.title }}
+              </h3>
+              <button type="button" (click)="closeModal()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Fechar modal</span>
+              </button>
+          </div>
+
+          <div class="p-6 space-y-6">
+              <div class="flex flex-col space-y-4">
+                  <div class="flex items-center">
+                      <div class="w-24 font-medium text-gray-900 dark:text-white">Autor:</div>
+                      <div class="text-gray-700 dark:text-gray-300">{{ selectedBook?.author }}</div>
+                  </div>
+                  <div class="flex items-center">
+                      <div class="w-24 font-medium text-gray-900 dark:text-white">Gênero:</div>
+                      <div>
+                          <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ selectedBook?.genre }}</span>
+                      </div>
+                  </div>
+                  <div>
+                      <h4 class="mb-2 font-medium text-gray-900 dark:text-white">Descrição:</h4>
+                      <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">{{ selectedBook?.description }}</p>
+                  </div>
+                  <div class="text-right">
+                      <span class="text-xs text-gray-500 dark:text-gray-400">ID: {{ selectedBook?.id }}</span>
+                  </div>
+              </div>
+          </div>
+
+          <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button type="button" (click)="closeModal()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Fechar</button>
+          </div>
+      </div>
+  </div>
+</div>
